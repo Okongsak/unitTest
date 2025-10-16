@@ -109,10 +109,21 @@ $(document).ready(function () {
   $("#registerForm").on("submit", function (e) {
     e.preventDefault();
 
+    const password = $("#regPassword").val();
+
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,20}$/;
+
+    if (!passwordRegex.test(password)) {
+      alert(
+        "รหัสผ่านต้องมีความยาว 8-20 ตัวอักษร และต้องมีตัวพิมพ์เล็ก ตัวพิมพ์ใหญ่ และตัวเลข อย่างน้อยอย่างละ 1 ตัว"
+      );
+      return;
+    }
+
     // เกียม DATA ส่งไป ajax
     const data = {
       username: $("#regUsername").val(),
-      password: $("#regPassword").val(),
+      password: password,
       email: $("#regEmail").val(),
       entity_type: $("#regEntityType").val(),
       entity_name: $("#regEntityName").val(),
