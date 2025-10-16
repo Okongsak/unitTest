@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>TEST UNIT</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h2>UNIT Company</h2>
+
+      <div class="row">
+        <!-- LOGIN FORM -->
+        <form id="loginForm" class="active">
+          <div class="form-group">
+            <label
+              ><i class="fas fa-user"></i> บัญชีผู้ใช้ (Username)<span
+                class="star-require"
+                >*</span
+              ></label
+            >
+            <input id="loginUsername" type="text" required />
+          </div>
+          <div class="form-group">
+            <label
+              ><i class="fas fa-key"></i> รหัสผ่าน (Password)<span
+                class="star-require"
+                >*</span
+              ></label
+            >
+            <input id="loginPassword" type="password" required />
+            
+            <i class="fas fa-eye" id="togglePassword"></i>
+          </div>
+          <div class="button-group">
+            <button class="btn-login" type="submit">เข้าสู่ระบบ</button>
+            <button class="btn-register" type="button" id="toRegister">
+              สมัครสมาชิก
+            </button>
+          </div>
+        </form>
+
+        <!-- REGISTER FORM -->
+        <form id="registerForm">
+          <div class="registerForm-header">
+            <h3>สมัครสมาชิก</h3>
+            <p>ทดลองใช้งานฟรี 6 เดือน</p>
+          </div>
+
+          <div class="form-group">
+            <label
+              >บัญชีผู้ใช้ (Username)<span class="star-require">*</span></label
+            >
+            <input id="regUsername" type="text" required />
+          </div>
+          <div class="form-group">
+            <label
+              >รหัสผ่าน (Password)<span class="star-require">*</span></label
+            >
+            <input id="regPassword" type="password" required />
+
+            <span class="password-require"
+              >มีตัวอักษรภาษาอังกฤษพิมพ์เล็ก พิมพ์ใหญ้ และตัวเลขอย่างน้อย
+              อย่างละ 1 ตัว กำหนดตั้งแต่ 8-20 ตัวอักษร</span
+            >
+          </div>
+          <div class="form-register-group">
+            <label>อีเมล<span class="star-require">*</span></label>
+            <input id="regEmail" type="email" required />
+          </div>
+          <div class="form-register-group">
+            <label>เบอร์โทรศัพท์<span class="star-require">*</span></label>
+            <input id="regPhone" type="text" required />
+          </div>
+          <div class="form-register-group">
+            <label>ประเภท<span class="star-require">*</span></label>
+            <select id="regEntityType" required>
+              <option value="">-- เลือก --</option>
+              <option value="individual">บุคคลธรรมดา</option>
+              <option value="juristic">นิติบุคคล</option>
+            </select>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="form-register-group">
+            <label
+              >ชื่อ-สกุล/ชื่อบริษัท<span class="star-require">*</span></label
+            >
+            <input id="regEntityName" type="text" required />
+          </div>
+          <div class="form-register-group">
+            <label
+              >เลขบัตรประชาชน/เลขที่ผู้เสียภาษี<span class="star-require"
+                >*</span
+              ></label
+            >
+            <input id="regTaxId" type="text" required />
+          </div>
+          <div class="form-register-group">
+            <label>ที่อยู่เลขที่<span class="star-require">*</span></label>
+            <input id="regAddressNumber" type="text" required />
+          </div>
+          <div class="form-register-group">
+            <label>หมู่</label>
+            <input id="regVillageNo" type="text" />
+          </div>
+          <div class="form-register-group">
+            <label>หมู่บ้าน/อาคาร</label>
+            <input id="regBuilding" type="text" />
+          </div>
+          <div class="form-register-group">
+            <label>ซอย</label>
+            <input id="regSoi" type="text" />
+          </div>
+          <div class="form-register-group">
+            <label>ถนน<span class="star-require">*</span></label>
+            <input id="regAddressRoad" type="text" required />
+          </div>
+          <div class="form-register-group">
+            <label>ตำบล/แขวง<span class="star-require">*</span></label>
+            <input id="regSubdistrict" type="text" required />
+          </div>
+          <div class="form-register-group">
+            <label>อำเภอ/เขต<span class="star-require">*</span></label>
+            <input id="regDistrict" type="text" required />
+          </div>
+          <div class="form-register-group">
+            <label>จังหวัด<span class="star-require">*</span></label>
+            <input id="regProvince" type="text" required />
+          </div>
+          <div class="form-register-group">
+            <label>รหัสไปรษณีย์<span class="star-require">*</span></label>
+            <input id="regPostalCode" type="text" required />
+          </div>
+          <div class="form-register-group">
+            <label>คำนำหน้าผู้ติดต่อ<span class="star-require">*</span></label>
+            <select id="regContactTitle" required>
+              <option value="">-- เลือก --</option>
+              <option value="Mr">นาย</option>
+              <option value="Mrs">นาง</option>
+              <option value="Miss">นางสาว</option>
+            </select>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="form-register-group">
+            <label>ชื่อผู้ติดต่อ<span class="star-require">*</span></label>
+            <input id="regContactFirstName" type="text" required />
+          </div>
+          <div class="form-register-group">
+            <label>สกุลผู้ติดต่อ<span class="star-require">*</span></label>
+            <input id="regContactLastName" type="text" required />
+          </div>
+          <div class="form-register-group">
+            <label>โค๊ดแนะนำ (REF)</label>
+            <input id="regReferral" type="text" />
+          </div>
+
+          <div class="button-group-register">
+            <button class="btn-submit-register" type="submit">
+              สมัครสมาชิก
+            </button>
+            <button class="btn-back" type="button" id="toLogin">
+              กลับสู่หน้าเข้าสู่ระบบ
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>
