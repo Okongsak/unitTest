@@ -29,9 +29,9 @@ services:
       - "3000:3000"
     restart: unless-stopped
     volumes:
-      - .:/app
-      - /app/node_modules  # กัน conflict node_modules
-    command: npm start
+      - .:/app               # mount source code
+      - /app/node_modules    # ignore host node_modules
+    command: npm start       # ใช้ start ปกติ
 
   # pgAdmin GUI
   pgadmin:
