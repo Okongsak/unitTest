@@ -1,55 +1,4 @@
 $(document).ready(function () {
-  // ฟังก์ชันแสดงข้อมูล user
-  function showUserInfo(user) {
-    // ซ่อนฟอร์มทั้งหมด
-    $("#loginForm, #registerForm").hide();
-
-    // ถ้า div userInfo ยังไม่มี สร้างใหม่
-    if ($("#userInfo").length === 0) {
-      $("body").append(`<div id="userInfo"></div>`);
-    }
-
-    // แสดงข้อมูล user
-    $("#userInfo").html(`
-      <div class="userProfile-container">
-      <h2>ยินดีต้อนรับ ${user.username}</h2>
-      <p><b><i class="fas fa-id-card-alt"></i>ชื่อ-สกุล/ชื่อบริษัท:</b> ${
-        user.entity_name
-      }</p>
-      <p><b><i class="fas fa-id-card"></i>เลขบัตรประชาชน/เลขที่ผู้เสียภาษี:</b> ${
-        user.tax_id
-      }</p>
-      <h4><i class="fas fa-map-marked-alt"></i>ที่อยู่</h4>
-      <p>
-        <b>เลขที่:</b> ${user.address_number || ""},
-        <b>หมู่:</b> ${user.village_no || ""},
-        <b>หมู่บ่าน/อาคาร:</b> ${user.building || ""},
-        <b>ซอย:</b> ${user.address_soi || ""},
-        <b>ถนน:</b> ${user.address_road || ""}, 
-        <b>ตำบล/แขวง:</b> ${user.subdistrict || ""}, 
-        <b>อำเภอ/เขต:</b> ${user.district || ""},
-        <b>จังหวัด:</b> ${user.province || ""}, 
-        <b>รหัสไปรษณีย์:</b> ${user.postal_code || ""}
-      </p>
-      <button id="logoutBtn"><i class="fas fa-sign-out-alt"></i>Logout</button>
-      </div>
-    `);
-
-    // logout
-    $("#logoutBtn").on("click", function () {
-      localStorage.removeItem("loggedInUser");
-      $("#userInfo").remove();
-      $("#loginForm").show();
-      window.location.reload();
-    });
-  }
-
-  // ตรวจสอบ localStorage ตอนโหลดหน้า
-  const loggedInUser = localStorage.getItem("loggedInUser");
-  if (loggedInUser) {
-    showUserInfo(JSON.parse(loggedInUser));
-  }
-
   // Toggle Form
   $("#toRegister").on("click", function () {
     // ซ่อน login form และล้างค่า
@@ -90,6 +39,7 @@ $(document).ready(function () {
         alert("Login successful!");
 
         const user = res.user;
+        console.log("user=", user);
 
         // เก็บ user ใน localStorage
         localStorage.setItem("loggedInUser", JSON.stringify(user));
@@ -164,4 +114,55 @@ $(document).ready(function () {
       },
     });
   });
+
+  // ฟังก์ชันแสดงข้อมูล user
+  function showUserInfo(user) {
+    // ซ่อนฟอร์มทั้งหมด
+    $("#loginForm, #registerForm").hide();
+
+    // ถ้า div userInfo ยังไม่มี สร้างใหม่
+    if ($("#userInfo").length === 0) {
+      $("body").append(`<div id="userInfo"></div>`);
+    }
+
+    // แสดงข้อมูล user
+    $("#userInfo").html(`
+      <div class="userProfile-container">
+      <h2>ยินดีต้อนรับ ${user.username}</h2>
+      <p><b><i class="fas fa-id-card-alt"></i>ชื่อ-สกุล/ชื่อบริษัท:</b> ${
+        user.entity_name
+      }</p>
+      <p><b><i class="fas fa-id-card"></i>เลขบัตรประชาชน/เลขที่ผู้เสียภาษี:</b> ${
+        user.tax_id
+      }</p>
+      <h4><i class="fas fa-map-marked-alt"></i>ที่อยู่</h4>
+      <p>
+        <b>เลขที่:</b> ${user.address_number || ""},
+        <b>หมู่:</b> ${user.village_no || ""},
+        <b>หมู่บ่าน/อาคาร:</b> ${user.building || ""},
+        <b>ซอย:</b> ${user.address_soi || ""},
+        <b>ถนน:</b> ${user.address_road || ""}, 
+        <b>ตำบล/แขวง:</b> ${user.subdistrict || ""}, 
+        <b>อำเภอ/เขต:</b> ${user.district || ""},
+        <b>จังหวัด:</b> ${user.province || ""}, 
+        <b>รหัสไปรษณีย์:</b> ${user.postal_code || ""}
+      </p>
+      <button id="logoutBtn"><i class="fas fa-sign-out-alt"></i>Logout</button>
+      </div>
+    `);
+
+    // logout
+    $("#logoutBtn").on("click", function () {
+      localStorage.removeItem("loggedInUser");
+      $("#userInfo").remove();
+      $("#loginForm").show();
+      window.location.reload();
+    });
+  }
+
+  // ตรวจสอบ localStorage ตอนโหลดหน้า
+  const loggedInUser = localStorage.getItem("loggedInUser");
+  if (loggedInUser) {
+    showUserInfo(JSON.parse(loggedInUser));
+  }
 });
